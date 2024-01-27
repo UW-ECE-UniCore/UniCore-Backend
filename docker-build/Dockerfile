@@ -2,7 +2,7 @@ FROM golang:1.21-alpine AS build
 
 #COPY biz/ /go/src/biz/
 #COPY pkg/ /go/src/pkg/
-COPY ../go.mod go.sum *.go /go/src/
+COPY go.mod go.sum *.go /go/src/
 
 WORKDIR "/go/src/"
 RUN go env -w GO111MODULE=on \

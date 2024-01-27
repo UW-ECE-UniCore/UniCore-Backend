@@ -11,7 +11,7 @@ import (
 
 func main() {
 	h := server.Default(
-		server.WithHostPorts("0.0.0.0:18005"),
+		server.WithHostPorts("0.0.0.0:8080"),
 	)
 
 	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
