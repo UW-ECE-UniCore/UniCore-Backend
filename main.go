@@ -7,7 +7,13 @@ import (
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	"unicore/biz/dal"
 )
+
+func init() {
+	dal.Init()
+}
 
 func main() {
 	h := server.Default(
