@@ -11,6 +11,7 @@ type User struct {
 	UserName        string `json:"user_name"`
 	Password        string `json:"password"`
 	Email           string `json:"email"`
+	School          string `json:"school"`
 	Avatar          string `json:"avatar"`
 	BackgroundImage string `json:"background_image"`
 	Signature       string `json:"signature"`
