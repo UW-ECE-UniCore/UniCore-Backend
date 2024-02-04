@@ -9,10 +9,21 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 	StatusCode int32
 	StatusMSG  string
-	UserID     int64
+	//UserID     int64
 }
 
-type UserLoginRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+//type UserLoginRequest struct {
+//	Email    string `json:"email"`
+//	Password string `json:"password"`
+//}
+
+type UserLoginResponse struct {
+	StatusCode int32
+	StatusMSG  string
+	UserID     int64
+	Email      string
+	School     string
+	UserName   string
+	Avatar     string
+	Signature  string
 }

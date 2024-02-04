@@ -8,10 +8,10 @@ import (
 func Register(r *server.Hertz) {
 	_user := r.Group("/user")
 	{
-		//{
-		//	_login := _user.Group("/login", _loginMw()...)
-		//	_login.POST("/", append(_userloginMw(), user.UserLogin)...)
-		//}
+		{
+			_login := _user.Group("/login")
+			_login.GET("/", user.UserLogin)
+		}
 		{
 			_register := _user.Group("/register")
 			_register.POST("/", user.UserRegister)

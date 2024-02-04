@@ -3,15 +3,20 @@ package errno
 import "fmt"
 
 const (
-	SuccessCode = 0
-	WrongFormat = 1
+	SuccessCode      = 0
+	WrongFormat      = 1
+	MySQLQueryErr    = 2
+	NotRegisteredErr = 3
+	WrongPasswordErr = 4
 )
 
 const (
-	SuccessMsg         = "Success"
-	WrongFormatMSG     = "Input data can not be binded"
-	MysqlQueryErrMSG   = "Query through mysql failed"
-	EmailRegisteredErr = "User's email has been registered"
+	SuccessMsg = "Success"
+	//WrongFormatMSG     = "Input data can not be binded"
+	MysqlQueryErrMSG      = "Query through mysql failed"
+	EmailRegisteredErrMSG = "User's email has been registered"
+	NotRegisteredErrMSG   = "This email has not been registered"
+	WrongPasswordErrMSG   = "Wrong password input"
 	//ServerErrMsg             = "Service is unable to start successfully"
 	//ParamErrMsg              = "Wrong Parameter has been given"
 	//UserIsNotExistErrMsg     = "user is not exist"
