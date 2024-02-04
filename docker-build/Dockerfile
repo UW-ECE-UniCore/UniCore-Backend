@@ -2,19 +2,22 @@ FROM golang:1.21-alpine AS build
 
 #COPY biz/ /go/src/biz/
 #COPY pkg/ /go/src/pkg/
-COPY go.mod go.sum *.go /go/src/
+#COPY go.mod go.sum *.go /go/src/
 
-WORKDIR "/go/src/"
+WORKDIR "/app"
+
+COPY . .
+
 RUN go env -w GO111MODULE=on \
     && go env -w GOOS=linux \
     && go env -w GOARCH=amd64
 RUN go mod tidy
 RUN go build -o unicore
 
-FROM alpine:latest
+FROM scratch
 WORKDIR /app
-COPY --from=build /go/src/unicore .
-EXPOSE 18005
+COPY --from=build /app/unicore .
+EXPOSE 8080
 ENTRYPOINT ["/app/unicore"]
 
 

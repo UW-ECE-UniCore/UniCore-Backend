@@ -4,6 +4,7 @@ go 1.21.5
 
 require (
 	github.com/cloudwego/hertz v0.8.0
+	github.com/go-redis/redis/v7 v7.4.1
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.6
 	gorm.io/plugin/opentracing v0.0.0-20211220013347-7d2b2af23560

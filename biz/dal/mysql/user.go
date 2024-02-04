@@ -1,6 +1,8 @@
 package mysql
 
 import (
+	"errors"
+	"gorm.io/gorm"
 	"unicore/pkg/constants"
 )
 
@@ -24,6 +26,15 @@ func CreateUser(user *User) (int64, error) {
 		return -1, err
 	}
 	return user.ID, nil
+}
+
+func GetUserByEmail(email string) (*User, error) {
+	var user User
+	err := DB.Where("email = ?", email).First(&user).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, nil
+	}
+	return &user, nil
 }
 
 func GetAllUsers() (*[]User, error) {
