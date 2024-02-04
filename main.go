@@ -24,5 +24,7 @@ func main() {
 		ctx.JSON(consts.StatusOK, utils.H{"message": "pong"})
 	})
 
+	register(h)
+
 	h.Spin()
 }

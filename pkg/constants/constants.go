@@ -1,7 +1,7 @@
 package constants
 
 const (
-	MySQLDSN      = "unicore:unicorepwd@tcp(127.0.0.1:18001)/unicore?charset=utf8&parseTime=True&loc=Local"
+	MySQLDSN      = "unicore:unicorepwd@tcp(host.docker.internal:18001)/unicore?charset=utf8&parseTime=True"
 	RedisAddr     = "localhost:18002"
 	RedisPassword = "unicorepwd"
 
