@@ -7,3 +7,11 @@ const (
 
 	UserTableName = "user"
 )
+
+const (
+	TimeZone = "Canada/Eastern"
+)
+
+const (
+	PostTableName = "post"
+)
