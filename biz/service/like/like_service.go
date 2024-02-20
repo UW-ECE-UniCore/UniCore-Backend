@@ -42,17 +42,19 @@ func CheckLikeExistService(userID, postID int64) (bool, error) {
 	res, err := mysql.CheckLikeExist(userID, postID)
 	if err != nil {
 		return false, errno.CustomResponse{
-			Message: err.Error(),
+			StatusCode: errno.MySQLQueryErr,
+			Message:    err.Error(),
 		}
 	}
 	return res, nil
 }
 
-func LikeActionService(userID, postID int64) (bool, error) {
+func ActionService(userID, postID int64) (bool, error) {
 	res, err := mysql.CheckLikeExist(userID, postID)
 	if err != nil {
 		return false, errno.CustomResponse{
-			Message: err.Error(),
+			StatusCode: errno.TargetNotExistErr,
+			Message:    err.Error(),
 		}
 	}
 	if res {
@@ -63,9 +65,11 @@ func LikeActionService(userID, postID int64) (bool, error) {
 		_, err := mysql.DeleteLike(like)
 		if err != nil {
 			return false, errno.CustomResponse{
-				Message: err.Error(),
+				StatusCode: errno.MySQLQueryErr,
+				Message:    err.Error(),
 			}
 		}
+		return false, nil
 	} else {
 		like := &mysql.Like{
 			FromUserID: userID,
@@ -74,9 +78,10 @@ func LikeActionService(userID, postID int64) (bool, error) {
 		_, err := mysql.AddLike(like)
 		if err != nil {
 			return false, errno.CustomResponse{
-				Message: err.Error(),
+				StatusCode: errno.MySQLQueryErr,
+				Message:    err.Error(),
 			}
 		}
+		return true, nil
 	}
-	return true, nil
 }

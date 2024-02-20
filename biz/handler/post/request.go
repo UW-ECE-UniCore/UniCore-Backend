@@ -8,13 +8,13 @@ type CreatePostRequest struct {
 }
 
 type CreatePostResponse struct {
-	StatusCode int32
-	StatusMSG  string
-	Post       mysql.Post
+	StatusCode int32      `json:"status_code"`
+	Message    string     `json:"message"`
+	Post       mysql.Post `json:"post"`
 }
 
 type GetPostResponse struct {
-	StatusCode int32
-	StatusMSG  string
-	PostList   []mysql.Post
+	StatusCode int32        `json:"status_code"`
+	Message    string       `json:"message"`
+	PostList   []mysql.Post `json:"post_list"`
 }

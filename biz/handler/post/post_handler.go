@@ -17,7 +17,7 @@ func CreatePost(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			CreatePostResponse{
 				StatusCode: errno.WrongFormat,
-				StatusMSG:  err.Error(),
+				Message:    err.Error(),
 			},
 		)
 	} else {
@@ -28,7 +28,7 @@ func CreatePost(ctx context.Context, c *app.RequestContext) {
 				consts.StatusOK,
 				CreatePostResponse{
 					StatusCode: errno.MySQLInsertErr,
-					StatusMSG:  err.Error(),
+					Message:    err.Error(),
 				},
 			)
 		} else {
@@ -36,7 +36,7 @@ func CreatePost(ctx context.Context, c *app.RequestContext) {
 				consts.StatusOK,
 				CreatePostResponse{
 					StatusCode: errno.SuccessCode,
-					StatusMSG:  errno.SuccessMsg,
+					Message:    errno.SuccessMsg,
 					Post:       *post,
 				},
 			)
@@ -51,7 +51,7 @@ func GetPostListByUser(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			GetPostResponse{
 				StatusCode: errno.WrongFormat,
-				StatusMSG:  err.Error(),
+				Message:    err.Error(),
 			},
 		)
 	}
@@ -61,7 +61,7 @@ func GetPostListByUser(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			GetPostResponse{
 				StatusCode: errno.MySQLQueryErr,
-				StatusMSG:  err.Error(),
+				Message:    err.Error(),
 			},
 		)
 	} else {
@@ -69,7 +69,7 @@ func GetPostListByUser(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			GetPostResponse{
 				StatusCode: errno.SuccessCode,
-				StatusMSG:  errno.SuccessMsg,
+				Message:    errno.SuccessMsg,
 				PostList:   *postList,
 			},
 		)

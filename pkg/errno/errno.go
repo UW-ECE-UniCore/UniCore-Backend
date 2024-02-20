@@ -10,6 +10,8 @@ const (
 	WrongPasswordErr    = 4
 	MySQLInsertErr      = 5
 	LikeAlreadyExistErr = 6
+	StrConvErr          = 7
+	TargetNotExistErr   = 8
 )
 
 const (
