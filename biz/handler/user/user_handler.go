@@ -25,7 +25,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 			c.JSON(
 				consts.StatusOK,
 				UserRegisterResponse{
-					StatusCode: errno.WrongFormat,
+					StatusCode: errno.MySQLInsertErr,
 					StatusMSG:  err.Error(),
 				},
 			)

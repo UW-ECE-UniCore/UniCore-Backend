@@ -12,11 +12,6 @@ type UserRegisterResponse struct {
 	//UserID     int64
 }
 
-//type UserLoginRequest struct {
-//	Email    string `json:"email"`
-//	Password string `json:"password"`
-//}
-
 type UserLoginResponse struct {
 	StatusCode int32
 	StatusMSG  string

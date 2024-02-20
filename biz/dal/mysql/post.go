@@ -7,11 +7,15 @@ import (
 )
 
 type Post struct {
-	PostID     int64  `json:post_id`
-	CreatorID  int64  `json:creator_id`
-	Content    string `json:content`
-	Type       string `json:type`
-	CreateTime string `json:create_time`
+	PostID     int64  `json:"post_id"`
+	CreatorID  int64  `json:"creator_id"`
+	Content    string `json:"content"`
+	School     int16  `json:"school"`
+	Type       int8   `json:"type"`
+	Status     int8   `json:"status"`
+	Likes      int64  `json:"likes"`
+	Comments   int64  `json:"comments"`
+	CreateTime string `json:"create_time"`
 }
 
 func (Post) TableName() string {
