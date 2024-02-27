@@ -6,4 +6,27 @@ const (
 	RedisPassword = "unicorepwd"
 
 	UserTableName = "user"
+
+	Salt = "UniCoreHashSalt!"
+)
+
+const (
+	TimeZone = "Canada/Eastern"
+)
+
+const (
+	PostTableName = "post"
+
+	TypePublic = 0
+	TypeSchool = 1
+
+	StatusCreate = 0
+)
+
+const (
+	LikeTableName = "Like"
+)
+
+const (
+	JWTSecretKey = "UniCoreJWTKey"
 )

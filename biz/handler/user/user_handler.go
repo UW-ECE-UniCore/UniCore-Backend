@@ -16,7 +16,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			UserRegisterResponse{
 				StatusCode: errno.WrongFormat,
-				StatusMSG:  err.Error(),
+				Message:    err.Error(),
 			},
 		)
 	} else {
@@ -25,8 +25,8 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 			c.JSON(
 				consts.StatusOK,
 				UserRegisterResponse{
-					StatusCode: errno.WrongFormat,
-					StatusMSG:  err.Error(),
+					StatusCode: errno.MySQLInsertErr,
+					Message:    err.Error(),
 				},
 			)
 		} else {
@@ -34,7 +34,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 				consts.StatusOK,
 				UserRegisterResponse{
 					StatusCode: errno.SuccessCode,
-					StatusMSG:  errno.SuccessMsg,
+					Message:    errno.SuccessMsg,
 				},
 			)
 		}
@@ -51,7 +51,7 @@ func UserLogin(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			UserLoginResponse{
 				StatusCode: errResp.StatusCode,
-				StatusMSG:  errResp.Message,
+				Message:    errResp.Message,
 			},
 		)
 	} else {
@@ -59,7 +59,7 @@ func UserLogin(ctx context.Context, c *app.RequestContext) {
 			consts.StatusOK,
 			UserLoginResponse{
 				StatusCode: errno.SuccessCode,
-				StatusMSG:  errno.SuccessMsg,
+				Message:    errno.SuccessMsg,
 				UserName:   user.UserName,
 				Email:      user.Email,
 				UserID:     user.ID,

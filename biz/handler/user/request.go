@@ -7,23 +7,17 @@ type UserRegisterRequest struct {
 }
 
 type UserRegisterResponse struct {
-	StatusCode int32
-	StatusMSG  string
-	//UserID     int64
+	StatusCode int32  `json:"status_code"`
+	Message    string `json:"message"`
 }
 
-//type UserLoginRequest struct {
-//	Email    string `json:"email"`
-//	Password string `json:"password"`
-//}
-
 type UserLoginResponse struct {
-	StatusCode int32
-	StatusMSG  string
-	UserID     int64
-	Email      string
-	School     string
-	UserName   string
-	Avatar     string
-	Signature  string
+	StatusCode int32  `json:"status_code"`
+	Message    string `json:"message"`
+	UserID     int64  `json:"user_id"`
+	Email      string `json:"email"`
+	School     string `json:"school"`
+	UserName   string `json:"username"`
+	Avatar     string `json:"avatar"`
+	Signature  string `json:"signature"`
 }

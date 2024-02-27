@@ -1,8 +1,6 @@
 FROM golang:1.21-alpine AS build
 
-#COPY biz/ /go/src/biz/
-#COPY pkg/ /go/src/pkg/
-#COPY go.mod go.sum *.go /go/src/
+RUN apk add --no-cache tzdata
 
 WORKDIR "/app"
 
@@ -17,6 +15,7 @@ RUN go build -o unicore
 FROM scratch
 WORKDIR /app
 COPY --from=build /app/unicore .
+COPY --from=build /usr/share/zoneinfo /usr/share/zoneinfo
 EXPOSE 8080
 ENTRYPOINT ["/app/unicore"]
 

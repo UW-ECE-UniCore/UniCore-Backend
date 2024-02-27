@@ -3,6 +3,7 @@ package user
 import (
 	"unicore/biz/dal/mysql"
 	"unicore/pkg/errno"
+	"unicore/pkg/utils"
 )
 
 func UserRegister(email string, username string, password string) (*mysql.User, error) {
@@ -20,7 +21,7 @@ func UserRegister(email string, username string, password string) (*mysql.User, 
 	user = &mysql.User{
 		Email:    email,
 		UserName: username,
-		Password: password,
+		Password: utils.HashPassword(password),
 	}
 	_, err = mysql.CreateUser(user)
 	if err != nil {
@@ -45,7 +46,7 @@ func UserLogin(email, password string) (*mysql.User, error) {
 			StatusCode: errno.NotRegisteredErr,
 		}
 	}
-	if user.Password == password {
+	if user.Password == utils.HashPassword(password) {
 		return user, nil
 	} else {
 		return nil, errno.CustomResponse{

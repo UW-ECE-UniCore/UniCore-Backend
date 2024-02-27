@@ -3,11 +3,15 @@ package errno
 import "fmt"
 
 const (
-	SuccessCode      = 0
-	WrongFormat      = 1
-	MySQLQueryErr    = 2
-	NotRegisteredErr = 3
-	WrongPasswordErr = 4
+	SuccessCode         = 0
+	WrongFormat         = 1
+	MySQLQueryErr       = 2
+	NotRegisteredErr    = 3
+	WrongPasswordErr    = 4
+	MySQLInsertErr      = 5
+	LikeAlreadyExistErr = 6
+	StrConvErr          = 7
+	TargetNotExistErr   = 8
 )
 
 const (
@@ -17,6 +21,8 @@ const (
 	EmailRegisteredErrMSG = "User's email has been registered"
 	NotRegisteredErrMSG   = "This email has not been registered"
 	WrongPasswordErrMSG   = "Wrong password input"
+
+	LikeAlreadyExistErrMSG = "like already exists"
 	//ServerErrMsg             = "Service is unable to start successfully"
 	//ParamErrMsg              = "Wrong Parameter has been given"
 	//UserIsNotExistErrMsg     = "user is not exist"
