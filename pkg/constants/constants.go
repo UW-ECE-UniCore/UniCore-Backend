@@ -30,3 +30,14 @@ const (
 const (
 	JWTSecretKey = "UniCoreJWTKey"
 )
+
+// email stuff
+const (
+	SMTPHost     = "smtp-mail.outlook.com"
+	SMTPUsername = "unicore.ca@outlook.com"
+	SMTPPassword = "kexqa7-pozpuh-zeszYn"
+	WebName      = "UniCore"
+	Port         = 587
+	CodeLength   = 6
+	CharSet      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+)
