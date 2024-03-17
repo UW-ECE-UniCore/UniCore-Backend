@@ -18,6 +18,12 @@ func AddLike(like *Like) (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	post, err := GetPostByPostID(like.PostID)
+	if err != nil {
+		return nil, err
+	}
+	post.Likes++
+	DB.Save(post)
 	return true, nil
 }
 
@@ -26,6 +32,12 @@ func DeleteLike(like *Like) (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	post, err := GetPostByPostID(like.PostID)
+	if err != nil {
+		return nil, err
+	}
+	post.Likes--
+	DB.Save(post)
 	return true, nil
 }
 

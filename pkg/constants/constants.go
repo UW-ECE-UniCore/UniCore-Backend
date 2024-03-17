@@ -42,3 +42,15 @@ const (
 	CodeLength   = 6
 	CharSet      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 )
+
+// school
+
+const (
+	UofT     = 21
+	McGill   = 30
+	UBC      = 34
+	UAlberta = 111
+	UW       = 112
+	Western  = 114
+	Montreal = 141
+)

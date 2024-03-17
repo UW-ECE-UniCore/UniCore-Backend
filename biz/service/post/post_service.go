@@ -7,12 +7,14 @@ import (
 	"unicore/pkg/utils"
 )
 
-func CreatePost(content string, creatorID int64) (*mysql.Post, error) {
+func CreatePost(content string, creatorID int64, school int16, title string) (*mysql.Post, error) {
 	curTime := utils.GetCurrentTime()
 	post := &mysql.Post{
 		CreatorID:  creatorID,
+		Title:      title,
 		Type:       constants.TypePublic,
 		Status:     constants.StatusCreate,
+		School:     school,
 		Content:    content,
 		CreateTime: curTime,
 	}

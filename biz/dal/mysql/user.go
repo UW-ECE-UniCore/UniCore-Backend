@@ -11,7 +11,7 @@ type User struct {
 	UserName        string `json:"user_name"`
 	Password        string `json:"password"`
 	Email           string `json:"email"`
-	School          string `json:"school"`
+	School          int16  `json:"school"`
 	Avatar          string `json:"avatar"`
 	BackgroundImage string `json:"background_image"`
 	Signature       string `json:"signature"`
@@ -41,6 +41,17 @@ func CheckUser(email, password string) (*[]User, error) {
 func GetUserByEmail(email string) (*User, error) {
 	var user User
 	err := DB.Where("email = ?", email).First(&user).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, nil
+	} else if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func GetUserByID(userID int64) (*User, error) {
+	var user User
+	err := DB.Where("id = ?", userID).First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, nil
 	} else if err != nil {

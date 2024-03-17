@@ -15,11 +15,12 @@ func Register(r *server.Hertz) {
 		}
 		{
 			_register := _user.Group("/register")
+			_register.POST("/verifyEmail", user.VerifyEmail)
 			_register.POST("/", user.UserRegister)
 		}
 		{
-			_getInfo := _user.Group("/get-info")
-			_getInfo.GET("/", user.GetUserInfo)
+			_getInfo := _user.Group("/getInfoByEmail")
+			_getInfo.GET("/", user.GetUserInfoByEmail)
 		}
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"strconv"
+	"unicore/biz/dal/mysql"
 	PostService "unicore/biz/service/post"
 	"unicore/pkg/errno"
 )
@@ -22,7 +23,17 @@ func CreatePost(ctx context.Context, c *app.RequestContext) {
 		)
 	} else {
 		userID, _ := strconv.Atoi(req.CreatorID)
-		post, err := PostService.CreatePost(req.Content, int64(userID))
+		user, err := mysql.GetUserByID(userID)
+		if err != nil {
+			c.JSON(
+				consts.StatusOK,
+				CreatePostResponse{
+					Message: "User not exist with id " + strconv.Itoa(userID),
+				},
+			)
+		}
+		school := user.School
+		post, err := PostService.CreatePost(req.Content, int64(userID), school, req.Title)
 		if err != nil {
 			c.JSON(
 				consts.StatusOK,
