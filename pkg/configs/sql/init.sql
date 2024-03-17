@@ -7,7 +7,7 @@ CREATE TABLE `user` (
      `user_name` varchar(255) NOT NULL COMMENT '用户名',
      `password` varchar(255) NOT NULL COMMENT '用户密码',
      `email` varchar(255) NOT NULL COMMENT '用户邮箱',
-     `school` varchar(255) COMMENT '学校',
+     `school` int COMMENT '学校',
      `avatar` varchar(255) COMMENT '用户头像',
      `background_image` varchar(255) COMMENT '用户个人页顶部大图',
      `signature` varchar(255) COMMENT '个人简介',

@@ -13,7 +13,7 @@ func Register(r *server.Hertz) {
 			_create.POST("/", append(mwFunc(), post.CreatePost)...)
 		}
 		{
-			_getPost := _post.Group("/get-post")
+			_getPost := _post.Group("/getPost")
 			{
 				_userPost := _getPost.Group("/user")
 				_userPost.GET("/", append(mwFunc(), post.GetPostListByUser)...)

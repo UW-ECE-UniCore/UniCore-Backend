@@ -6,7 +6,7 @@ import (
 	"unicore/pkg/utils"
 )
 
-func UserRegister(email string, username string, password string) (*mysql.User, error) {
+func UserRegister(email string, username string, password string, school int) (*mysql.User, error) {
 	user, err := mysql.GetUserByEmail(email)
 	if err != nil {
 		return nil, errno.CustomResponse{
@@ -22,6 +22,7 @@ func UserRegister(email string, username string, password string) (*mysql.User, 
 		Email:    email,
 		UserName: username,
 		Password: utils.HashPassword(password),
+		School:   int16(school),
 	}
 	_, err = mysql.CreateUser(user)
 	if err != nil {

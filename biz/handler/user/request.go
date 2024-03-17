@@ -20,3 +20,14 @@ type GetUserInfoResponse struct {
 	Avatar    string `json:"avatar"`
 	Signature string `json:"signature"`
 }
+
+type VerifyEmailRequest struct {
+	Email string `json:"email"`
+}
+
+type VerifyEmailResponse struct {
+	Email            string `json:"email"`
+	VerificationCode string `json:"verification_code"`
+	Message          string `jons:"message"`
+	School           int    `json:"school""`
+}

@@ -7,6 +7,7 @@ import (
 	"unicore/biz/dal/mysql"
 	UserService "unicore/biz/service/user"
 	"unicore/pkg/errno"
+	"unicore/pkg/utils"
 )
 
 func UserRegister(ctx context.Context, c *app.RequestContext) {
@@ -21,7 +22,16 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 			},
 		)
 	} else {
-		_, err = UserService.UserRegister(req.Email, req.UserName, req.Password)
+		school := utils.GetSchool(req.Email)
+		if school == -1 {
+			c.JSON(
+				consts.StatusOK,
+				UserRegisterResponse{
+					Message: "Can not register a user with invalid email address.",
+				},
+			)
+		}
+		_, err = UserService.UserRegister(req.Email, req.UserName, req.Password, school)
 		if err != nil {
 			c.JSON(
 				consts.StatusOK,
@@ -42,38 +52,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 	}
 }
 
-//func UserLogin(ctx context.Context, c *app.RequestContext) {
-//	email := c.Query("email")
-//	password := c.Query("password")
-//	user, err := UserService.UserLogin(email, password)
-//	if err != nil {
-//		errResp := err.(errno.CustomResponse)
-//		c.JSON(
-//			consts.StatusOK,
-//			UserLoginResponse{
-//				StatusCode: errResp.StatusCode,
-//				Message:    errResp.Message,
-//			},
-//		)
-//	} else {
-//		c.JSON(
-//			consts.StatusOK,
-//			UserLoginResponse{
-//				StatusCode: errno.SuccessCode,
-//				Message:    errno.SuccessMsg,
-//				UserName:   user.UserName,
-//				Email:      user.Email,
-//				UserID:     user.ID,
-//				Avatar:     user.Avatar,
-//				Signature:  user.Signature,
-//				School:     user.School,
-//			},
-//		)
-//	}
-//
-//}
-
-func GetUserInfo(ctx context.Context, c *app.RequestContext) {
+func GetUserInfoByEmail(ctx context.Context, c *app.RequestContext) {
 	email := c.Query("email")
 	user, err := mysql.GetUserByEmail(email)
 	if err != nil {
@@ -103,5 +82,36 @@ func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 				School:    user.School,
 			},
 		)
+	}
+}
+
+func VerifyEmail(ctx context.Context, c *app.RequestContext) {
+	var req VerifyEmailRequest
+	err := c.Bind(&req)
+	if err != nil {
+		c.JSON(
+			consts.StatusOK,
+			VerifyEmailResponse{
+				Message: err.Error(),
+			},
+		)
+	} else {
+		school := utils.GetSchool(req.Email)
+		if school == -1 {
+			c.JSON(
+				consts.StatusOK,
+				VerifyEmailResponse{
+					Message: "School not registered, you can wait or contact the administrator to add your school.",
+				},
+			)
+		} else {
+			c.JSON(
+				consts.StatusOK,
+				VerifyEmailResponse{
+					School:  school,
+					Message: errno.SuccessMsg,
+				},
+			)
+		}
 	}
 }

@@ -4,7 +4,7 @@ import "unicore/biz/dal/mysql"
 
 type CreatePostRequest struct {
 	Content   string `json:"content"`
-	Tittle    string `json:"tittle"`
+	Title     string `json:"title"`
 	CreatorID string `json:"user_id"`
 	Type      string `json:"type"`
 }
