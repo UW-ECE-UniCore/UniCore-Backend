@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
     `post_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'post ID',
     `creator_id` varchar(255) NOT NULL COMMENT '发布者ID',
+    `title` varchar(255) NOT NULL COMMENT '标题',
     `content` TEXT NOT NULL COMMENT '内容',
     `school` int COMMENT '学校',
     `type` int COMMENT '类别，校内还是公开',

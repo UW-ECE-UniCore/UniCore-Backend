@@ -10,13 +10,13 @@ func Register(r *server.Hertz) {
 	{
 		{
 			_create := _post.Group("/create")
-			_create.POST("/", post.CreatePost)
+			_create.POST("/", append(mwFunc(), post.CreatePost)...)
 		}
 		{
 			_getPost := _post.Group("/get-post")
 			{
 				_userPost := _getPost.Group("/user")
-				_userPost.GET("/", post.GetPostListByUser)
+				_userPost.GET("/", append(mwFunc(), post.GetPostListByUser)...)
 			}
 			//{
 			//	_schoolPost := _getPost.Group("/school")

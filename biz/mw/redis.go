@@ -1,4 +1,4 @@
-package redis
+package mw
 
 import (
 	"github.com/go-redis/redis/v7"

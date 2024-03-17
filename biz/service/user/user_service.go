@@ -32,26 +32,26 @@ func UserRegister(email string, username string, password string) (*mysql.User, 
 	return user, nil
 }
 
-func UserLogin(email, password string) (*mysql.User, error) {
-	user, err := mysql.GetUserByEmail(email)
-	if err != nil {
-		return nil, errno.CustomResponse{
-			Message:    errno.MysqlQueryErrMSG,
-			StatusCode: errno.MySQLQueryErr,
-		}
-	}
-	if user == nil {
-		return nil, errno.CustomResponse{
-			Message:    errno.NotRegisteredErrMSG,
-			StatusCode: errno.NotRegisteredErr,
-		}
-	}
-	if user.Password == utils.HashPassword(password) {
-		return user, nil
-	} else {
-		return nil, errno.CustomResponse{
-			Message:    errno.WrongPasswordErrMSG,
-			StatusCode: errno.WrongPasswordErr,
-		}
-	}
-}
+//func UserLogin(email, password string) (*mysql.User, error) {
+//	user, err := mysql.GetUserByEmail(email)
+//	if err != nil {
+//		return nil, errno.CustomResponse{
+//			Message:    errno.MysqlQueryErrMSG,
+//			StatusCode: errno.MySQLQueryErr,
+//		}
+//	}
+//	if user == nil {
+//		return nil, errno.CustomResponse{
+//			Message:    errno.NotRegisteredErrMSG,
+//			StatusCode: errno.NotRegisteredErr,
+//		}
+//	}
+//	if user.Password == utils.HashPassword(password) {
+//		return user, nil
+//	} else {
+//		return nil, errno.CustomResponse{
+//			Message:    errno.WrongPasswordErrMSG,
+//			StatusCode: errno.WrongPasswordErr,
+//		}
+//	}
+//}
