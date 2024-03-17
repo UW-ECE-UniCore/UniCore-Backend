@@ -9,10 +9,10 @@ func Register(r *server.Hertz) {
 	_like := r.Group("/like")
 	{
 		_check := _like.Group("/check")
-		_check.GET("/", LikeHandler.CheckLikeExistHandler)
+		_check.GET("/", append(mwFunc(), LikeHandler.CheckLikeExistHandler)...)
 	}
 	{
 		_action := _like.Group("/action")
-		_action.POST("/", LikeHandler.ActionHandler)
+		_action.POST("/", append(mwFunc(), LikeHandler.ActionHandler)...)
 	}
 }

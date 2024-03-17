@@ -11,13 +11,12 @@ type UserRegisterResponse struct {
 	Message    string `json:"message"`
 }
 
-type UserLoginResponse struct {
-	StatusCode int32  `json:"status_code"`
-	Message    string `json:"message"`
-	UserID     int64  `json:"user_id"`
-	Email      string `json:"email"`
-	School     string `json:"school"`
-	UserName   string `json:"username"`
-	Avatar     string `json:"avatar"`
-	Signature  string `json:"signature"`
+type GetUserInfoResponse struct {
+	Message   string `json:"message"`
+	UserID    int64  `json:"user_id"`
+	Email     string `json:"email"`
+	School    string `json:"school"`
+	UserName  string `json:"username"`
+	Avatar    string `json:"avatar"`
+	Signature string `json:"signature"`
 }

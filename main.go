@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"unicore/biz/mw"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -24,6 +25,7 @@ func main() {
 		ctx.JSON(consts.StatusOK, utils.H{"message": "pong"})
 	})
 
+	mw.InitJwt()
 	register(h)
 
 	h.Spin()

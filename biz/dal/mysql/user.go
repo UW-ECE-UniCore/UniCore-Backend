@@ -29,11 +29,22 @@ func CreateUser(user *User) (int64, error) {
 	return user.ID, nil
 }
 
+func CheckUser(email, password string) (*[]User, error) {
+	var UserList []User
+	err := DB.Where("email = ? AND password = ?", email, password).Find(&UserList).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, nil
+	}
+	return &UserList, nil
+}
+
 func GetUserByEmail(email string) (*User, error) {
 	var user User
 	err := DB.Where("email = ?", email).First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, nil
+	} else if err != nil {
+		return nil, err
 	}
 	return &user, nil
 }
